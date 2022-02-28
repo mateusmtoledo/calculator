@@ -1,0 +1,57 @@
+body, * {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+}
+
+body > div {
+    flex: 1 2 auto;
+}
+
+.display {
+    display: flex;
+    border: 2px black solid;
+    margin: 48px 0 64px;
+    height: 80px;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 5px;
+    flex-direction: column;
+    background-color: white;
+}
+
+.row > div {
+    background-color: white;
+}
+
+.result {
+    font-size: 32px;
+}
+
+.equation {
+    font-size: 16px;
+}
+
+.row {
+    flex: 1;
+    display: flex;
+    gap: 16px;
+    margin: 24px 0;
+}
+
+.container {
+    flex: 0 1 350px;
+    border: 2px solid black;
+    padding: 0 24px;
+    background-color: rgb(75, 75, 75);
+    border-radius: 12px;
+}
+
+.row div {
+    text-align: center;
+    font-size: 32px;
+    flex: 1;
+    border: 2px solid black;
+}
