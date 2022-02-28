@@ -1,13 +1,23 @@
-// const number = [];
-// const row = [];
-// const numberContainer = document.querySelector('.number-container');
+function sum(a, b) {
+    return a + b;
+}
 
-// for (let i = 0; i < 3; i++) {
-//     row[i] = document.createElement('div');
-//     numberContainer.appendChild(row[i]);
-//     for (let j = 9 - 3 * i; j > (2 - i) * 3; j--) {
-//         number[j] = document.createElement('div');
-//         number[j].textContent = j;
-//         numberContainer.appendChild(number[j]);
-//     }
-// }
+function subtract(a, b) {
+    return a - b;
+}
+
+function multiply(a, b) {
+    return a * b;
+}
+
+function divide(a, b) {
+    return a / b;
+}
+
+function operate(a, b, operator) {
+    return operator(a, b);
+}
+
+const numbers = [...document.querySelectorAll('.number')];
+const numberKeys = [];
+numbers.forEach(number => numberKeys[number.textContent] = number);

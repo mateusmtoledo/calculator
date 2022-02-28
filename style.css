@@ -16,22 +16,14 @@ body > div {
     margin: 48px 0 64px;
     height: 80px;
     align-items: flex-end;
-    justify-content: space-between;
+    justify-content: flex-end;
     padding: 5px;
-    flex-direction: column;
     background-color: white;
+    font-size: 48px;
 }
 
 .row > div {
     background-color: white;
-}
-
-.result {
-    font-size: 32px;
-}
-
-.equation {
-    font-size: 16px;
 }
 
 .row {
