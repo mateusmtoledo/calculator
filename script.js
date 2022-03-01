@@ -11,6 +11,10 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
+    if (b == 0) {
+        resetConfig();
+        return 'ERROR';
+    }
     return a / b;
 }
 
@@ -70,6 +74,7 @@ del.addEventListener('click', () => {
 
 const equals = document.querySelector('.equals');
 equals.addEventListener('click', () => {
+    if (typeof operation !== 'function') return;
     display.textContent = operate(num, Number(display.textContent), operation);
     num = undefined;
 })
