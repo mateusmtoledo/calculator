@@ -14,6 +14,10 @@ function divide(a, b) {
     return a / b;
 }
 
+function power(a, b) {
+    return a ** b;
+}
+
 function operate(a, b, operator) {
     return operator(a, b);
 }
@@ -40,6 +44,9 @@ function setOperator(operator) {
         case '-':
             operation = subtract;
             break;
+        case '^':
+            operation = power;
+            break;
     }
 }
 
@@ -51,9 +58,21 @@ const display = document.querySelector('.display');
 const numbers = [...document.querySelectorAll('.number')];
 const numberKeys = [];
 const operators = [...document.querySelectorAll('.operator')];
-const clear = document.querySelector('.clear');
 
+const clear = document.querySelector('.clear');
 clear.addEventListener('click', resetConfig);
+
+const del = document.querySelector('.del');
+del.addEventListener('click', () => {
+    display.textContent = display.textContent.slice(0, -1);
+    if (display.textContent === '') display.textContent = '0';
+});
+
+const equals = document.querySelector('.equals');
+equals.addEventListener('click', () => {
+    display.textContent = operate(num, Number(display.textContent), operation);
+    num = undefined;
+})
 
 operators.forEach(operator => {
     operator.addEventListener('click', () => {
