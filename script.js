@@ -18,19 +18,64 @@ function operate(a, b, operator) {
     return operator(a, b);
 }
 
-function updateDisplay(num) {
-    display.textContent = num;
+function resetConfig() {
+    clicked = 0;
+    num = undefined;
+    needsReset = false;
+    operation = undefined;
+    display.textContent = 0;
 }
 
-let num1 = 0;
-let num2 = 0;
+function setOperator(operator) {
+    switch(operator) {
+        case '*':
+            operation = multiply;
+            break;
+        case '/':
+            operation = divide;
+            break;
+        case '+':
+            operation = sum;
+            break;
+        case '-':
+            operation = subtract;
+            break;
+    }
+}
+
+let clicked = 0;
+let operation;
+let num;
+let needsReset = false;
 const display = document.querySelector('.display');
 const numbers = [...document.querySelectorAll('.number')];
 const numberKeys = [];
+const operators = [...document.querySelectorAll('.operator')];
+const clear = document.querySelector('.clear');
+
+clear.addEventListener('click', resetConfig);
+
+operators.forEach(operator => {
+    operator.addEventListener('click', () => {
+        needsReset = true;
+        if(num === undefined) {
+            num = Number(display.textContent);
+            setOperator(operator.textContent);
+            return;
+        }
+        display.textContent = (num = operate(num, Number(display.textContent), operation));
+        setOperator(operator.textContent);
+    });
+});
+
 numbers.forEach(number => {
     numberKeys[number.textContent] = number;
     number.addEventListener('click', () => {
-        num1 = Number(number.textContent);
-        updateDisplay(num1);
+        clicked = number.textContent;
+        if(display.textContent == 0 || needsReset) {
+            display.textContent = clicked;
+            needsReset = false;
+        }
+        else display.textContent += clicked;
     });
 });
