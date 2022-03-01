@@ -93,6 +93,12 @@ operators.forEach(operator => {
     });
 });
 
+const decimal = document.querySelector('.decimal');
+decimal.addEventListener('click', () => {
+    if (display.textContent.includes('.')) return;
+    else display.textContent += '.';
+});
+
 numbers.forEach(number => {
     numberKeys[number.textContent] = number;
     number.addEventListener('click', () => {
