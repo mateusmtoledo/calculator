@@ -31,24 +31,47 @@ body > div {
     display: flex;
     gap: 16px;
     margin: 24px 0;
+    justify-content: space-between;
 }
 
 .container {
-    flex: 0 1 350px;
+    flex: 0 1 450px;
     border: 2px solid black;
-    padding: 0 24px;
+    padding: 0 24px 24px;
     background-color: rgb(75, 75, 75);
     border-radius: 12px;
 }
 
 .row button {
     text-align: center;
-    font-size: 32px;
-    flex: 1 1 50px;
+    font-size: 24px;
+    flex: 1 1 30px;
     border: 2px solid black;
+    padding: 6px 0;
+}
+
+.row div {
+    flex: 1 1 auto;
 }
 
 .row button:active {
     background-color: #8d8d8d;
     border: 2px solid white;
+}
+
+.row .zero {
+    flex: 3.6 1 auto;
+}
+
+.row .operator,
+.row .equals,
+.row .del,
+.row .clear,
+.row .decimal {
+    background-color: #bdbdbd
+}
+
+.row .del,
+.row .clear {
+    color: rgb(216, 0, 0);
 }
