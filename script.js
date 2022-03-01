@@ -76,6 +76,7 @@ const equals = document.querySelector('.equals');
 equals.addEventListener('click', () => {
     if (typeof operation !== 'function') return;
     display.textContent = operate(num, Number(display.textContent), operation);
+    operation = undefined;
     num = undefined;
 })
 
@@ -96,6 +97,7 @@ numbers.forEach(number => {
     numberKeys[number.textContent] = number;
     number.addEventListener('click', () => {
         clicked = number.textContent;
+        // if (display.textContent + clicked >= 10000000000000000) return;
         if(display.textContent == 0 || needsReset) {
             display.textContent = clicked;
             needsReset = false;

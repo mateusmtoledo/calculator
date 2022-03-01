@@ -3,7 +3,10 @@ body, * {
 }
 
 body {
+    height: 100vh;
+    margin: 0;
     display: flex;
+    align-items: center;
 }
 
 body > div {
@@ -22,15 +25,15 @@ body > div {
     font-size: 48px;
 }
 
-.row > div {
+.number {
     background-color: white;
 }
 
 .row {
     flex: 1;
     display: flex;
-    gap: 16px;
-    margin: 24px 0;
+    gap: 8px;
+    margin: 8px 0;
     justify-content: space-between;
 }
 
@@ -38,11 +41,11 @@ body > div {
     flex: 0 1 450px;
     border: 2px solid black;
     padding: 0 24px 24px;
-    background-color: rgb(75, 75, 75);
-    border-radius: 12px;
+    background-color: rgb(18, 44, 100);
+    border-radius: 5%;
 }
 
-.row button {
+button {
     text-align: center;
     font-size: 24px;
     flex: 1 1 30px;
@@ -54,24 +57,27 @@ body > div {
     flex: 1 1 auto;
 }
 
-.row button:active {
-    background-color: #8d8d8d;
-    border: 2px solid white;
+button:active {
+    background-color: #000000;
+    border-color: white;
+    color: white;
 }
 
-.row .zero {
-    flex: 3.6 1 auto;
+.zero {
+    flex: 3.18 1 auto;
 }
 
-.row .operator,
-.row .equals,
-.row .del,
-.row .clear,
-.row .decimal {
-    background-color: #bdbdbd
+.operator,
+.equals {
+    background-color: #ff8f39
 }
 
-.row .del,
-.row .clear {
-    color: rgb(216, 0, 0);
+.decimal {
+    background-color: rgb(192, 192, 192);
+    color: black;
+}
+
+.del,
+.clear {
+    background-color: #c20000;
 }
