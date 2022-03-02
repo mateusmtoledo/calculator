@@ -61,7 +61,6 @@ let needsReset = false;
 const display = document.querySelector('.display');
 const numbers = [...document.querySelectorAll('.number')];
 const numberKeys = [];
-const operators = [...document.querySelectorAll('.operator')];
 
 const clear = document.querySelector('.clear');
 clear.addEventListener('click', resetConfig);
@@ -80,6 +79,7 @@ equals.addEventListener('click', () => {
     num = undefined;
 })
 
+const operators = [...document.querySelectorAll('.operator')];
 operators.forEach(operator => {
     operator.addEventListener('click', () => {
         needsReset = true;
@@ -103,8 +103,7 @@ numbers.forEach(number => {
     numberKeys[number.textContent] = number;
     number.addEventListener('click', () => {
         clicked = number.textContent;
-        // if (display.textContent + clicked >= 10000000000000000) return;
-        if(display.textContent == 0 || needsReset) {
+        if(display.textContent === '0' || needsReset) {
             display.textContent = clicked;
             needsReset = false;
         }

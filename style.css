@@ -17,7 +17,7 @@ body > div {
     display: flex;
     border: 2px black solid;
     margin: 48px 0 64px;
-    height: 80px;
+    height: max-content;
     align-items: flex-end;
     justify-content: flex-end;
     padding: 5px;
