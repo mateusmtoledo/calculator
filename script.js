@@ -28,8 +28,8 @@ function power(a, b) {
 
 const result = document.querySelector('.result');
 
-function updateDisplay() {
-    if ((result.textContent + this.textContent).length > 16 && needsReset === false) {
+function updateResult() {
+    if ((result.textContent + this.textContent).length > 11 && needsReset === false) {
         alert('ERROR: You can\'t insert more numbers');
         return;
     }
@@ -40,21 +40,51 @@ function updateDisplay() {
     else result.textContent += this.textContent;
 }
 
-function calculate() {
-    if (operation === undefined) return;
-    if (needsReset === true) {
-        operation = undefined;
-        needsReset = false;
-        return;
+const expression = document.querySelector('.expression');
+
+function updateExpression() {
+    if(num1 === undefined) expression.textContent = '';
+    else expression.textContent = num1;
+    switch(operation) {
+        case sum:
+            expression.textContent += '+';
+            break;
+        case subtract:
+            expression.textContent += '-';
+            break;
+        case multiply:
+            expression.textContent += '*';
+            break;
+        case divide:
+            expression.textContent += '/';
+            break;
+        case power:
+            expression.textContent += '^';
+            break;
     }
+}
+
+function calculate() {
+    if (num1 === undefined || operation === undefined) return;
+    // if (needsReset === true) {
+    //     operation = undefined;
+    //     needsReset = false;
+    //     return;
+    // }
     num2 = Number(result.textContent);
-    result.textContent = operation(num1, num2);
+    result.textContent = (num1 = (operation(num1, num2)));
+    if(result.textContent.length > 11) {
+        let exponential = num1.toExponential(7);
+        if (exponential.length === 10) result.textContent = exponential;
+        else if (exponential.length === 11) result.textContent = num1.toExponential(6);
+        else result.textContent = num1.toExponential(5);
+    };
     num2 = undefined;
     operation = undefined;
 }
 
 function setOperation() {
-    if (num1 !== undefined && operation !== undefined) calculate();
+    calculate();
     num1 = Number(result.textContent);
     switch(this.textContent) {
         case '+':
@@ -99,7 +129,7 @@ let needsReset = false;
 
 const numberKeys = [...document.querySelectorAll('.number')];
 const numbers = numberKeys.sort((a,b) => a.textContent > b.textContent ? 1 : -1);
-numbers.forEach(number => number.addEventListener('click', updateDisplay));
+numbers.forEach(number => number.addEventListener('click', updateResult));
 
 const operators = [...document.querySelectorAll('.operator')];
 operators.forEach(operator => operator.addEventListener('click', setOperation));
@@ -115,3 +145,6 @@ del.addEventListener('click', removeLastChar);
 
 const clear = document.querySelector('.clear');
 clear.addEventListener('click', resetConfig);
+
+const buttons = [...document.querySelectorAll('button')];
+buttons.forEach(button => button.addEventListener('click', updateExpression));
