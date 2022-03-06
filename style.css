@@ -73,9 +73,12 @@ button:active {
     flex: 2 1 82px;
 }
 
-.operator,
-.equals {
+.operator {
     background-color: #ff6f00;
+}
+
+.equals {
+    background-color: #00c5d3;
 }
 
 .decimal {

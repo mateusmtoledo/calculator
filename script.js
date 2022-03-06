@@ -18,12 +18,9 @@ function divide(a, b) {
     return a / b;
 }
 
-function power(a, b) {
-    if(a == 0 && b == 0) {
-        needsReset = true;
-        return 'ERROR';
-    }
-    return a ** b;
+function changeSign() {
+    if (result.textContent.charAt(0) === '-') result.textContent = result.textContent.split('-').join('');
+    else result.textContent = '-' + result.textContent;
 }
 
 const result = document.querySelector('.result');
@@ -58,26 +55,16 @@ function updateExpression() {
         case divide:
             expression.textContent += '/';
             break;
-        case power:
-            expression.textContent += '^';
-            break;
     }
 }
 
 function calculate() {
     if (num1 === undefined || operation === undefined) return;
-    // if (needsReset === true) {
-    //     operation = undefined;
-    //     needsReset = false;
-    //     return;
-    // }
     num2 = Number(result.textContent);
     result.textContent = (num1 = (operation(num1, num2)));
     if(result.textContent.length > 11) {
         let exponential = num1.toExponential(7);
-        if (exponential.length === 10) result.textContent = exponential;
-        else if (exponential.length === 11) result.textContent = num1.toExponential(6);
-        else result.textContent = num1.toExponential(5);
+        result.textContent = num1.toExponential(18 - exponential.length);
     };
     num2 = undefined;
     operation = undefined;
@@ -98,9 +85,6 @@ function setOperation() {
             break;
         case '/':
             operation = divide;
-            break;
-        case '^':
-            operation = power;
             break;
     }
     needsReset = true;
@@ -148,3 +132,6 @@ clear.addEventListener('click', resetConfig);
 
 const buttons = [...document.querySelectorAll('button')];
 buttons.forEach(button => button.addEventListener('click', updateExpression));
+
+const sign = document.querySelector('.change-sign');
+sign.addEventListener('click', changeSign);
